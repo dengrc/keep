@@ -1,0 +1,30 @@
+<script>
+	var a = document.createElement('a');
+	window.addEventListener("message", function(e) {
+		var content;
+		if(/image/.test(e.data.type)) {
+			var binStr = atob(e.data.content),
+				len = binStr.length,
+				content = new Uint8Array(len);
+
+			for(var i = 0; i < len; i++) {
+				content[i] = binStr.charCodeAt(i);
+			}
+		} else {
+			content = e.data.content
+		}
+
+		if(!content) {
+			return
+		}
+
+		var url = URL.createObjectURL(new Blob([content], {
+			type: e.data.type
+		}))
+
+		a.href = url;
+		a.download = e.data.filename;
+		a.click();
+		URL.revokeObjectURL(url)
+	})
+</script>
