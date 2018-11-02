@@ -1,0 +1,21 @@
+<input id="fileinput" type="file" accept="image/*" />
+<iframe id="downloadIframe" src="download.html" style="visibility: hidden;width: 1;height: 1;opacity: 0.01;"></iframe>
+<script>
+	var ifr = document.getElementById('downloadIframe');
+	var canvas = document.createElement('canvas');
+	var context = canvas.getContext('2d');
+	document.getElementById('fileinput').onchange = function(e) {
+		var img = new Image();
+		img.src = URL.createObjectURL(e.target.files[0]);
+		img.onload = function() {
+			canvas.width = img.width;
+			canvas.height = img.height;
+			context.drawImage(img, 0, 0);
+			ifr.contentWindow.postMessage({
+				content: canvas.toDataURL("image/jpeg").split(',')[1],
+				filename: new Date().toJSON() + ".jpg",
+				type: "image/jpeg"
+			}, "*")
+		}
+	}
+</script>
