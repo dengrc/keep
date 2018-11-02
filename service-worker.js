@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.9b6f7ffd6719db3c497d1cbb084c5d8c.js"
+  "/keep/precache-manifest.05c3fe8989c8b99d1938e3d3990ae39d.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "keepaccount"});
