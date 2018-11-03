@@ -1,6 +1,8 @@
 {
   "name": "keepaccount",
   "short_name": "keepaccount",
+  "version":"0.0.1",
+  "version_name":"0.0.1 beta",
   "icons": [
     {
       "src": "/keep/img/icons/android-chrome-192x192.png",
